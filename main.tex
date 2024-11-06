@@ -1,0 +1,53 @@
+% main.tex
+\documentclass{beamer}
+
+\usepackage{template/Politecnico-di-Torino-Presentation/beamerthemesintef} % updated path - @eliainnocenti
+
+\usepackage{amsfonts,amsmath,oldgerm}
+
+\usetheme{sintef}
+
+\newcommand{\testcolor}[1]{\colorbox{#1}{\textcolor{#1}{test}}~\texttt{#1}}
+
+\usefonttheme[onlymath]{serif}
+
+\titlebackground*{template/Politecnico-di-Torino-Presentation/assets/background} % updated path - @eliainnocenti
+
+\newcommand{\hrefcol}[2]{\textcolor{cyan}{\href{#1}{#2}}}
+
+% Presentation info
+\title{Your Presentation Title}
+\subtitle{Using \LaTeX\ to prepare slides}
+\course{Master's Degree in Computer Science}
+\author{Your Name}
+\IDnumber{1234567}
+%\institute{Politecnico di Torino}
+%\date{\today}
+
+% Begin document
+\begin{document}
+\maketitle
+
+% Title frame
+%\begin{frame}
+%    \titlepage
+%\end{frame}
+
+% Example slide
+\begin{frame}{Introduction}
+    \begin{itemize}
+        \item First point
+        \item Second point
+        \item Third point
+    \end{itemize}
+\end{frame}
+
+% Additional slides as needed
+\begin{frame}{Another Slide}
+    %\includegraphics[width=0.5\textwidth]{\templatepath/assets/logo_RGB.png}
+    %\hfill
+    %\includegraphics[width=0.5\textwidth]{\templatepath/assets/logo_RGB_master.png}
+\end{frame}
+
+\end{document}
+

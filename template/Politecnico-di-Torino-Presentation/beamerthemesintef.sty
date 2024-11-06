@@ -36,7 +36,8 @@
 \RequirePackage{caladea,carlito}
 \renewcommand{\familydefault}{\sfdefault}
 
-\RequirePackage{graphicx,sintefcolor}
+%\RequirePackage{graphicx,sintefcolor}
+\RequirePackage{graphicx,template/Politecnico-di-Torino-Presentation/sintefcolor} % updated path - @eliainnocenti
 
 % No navigation symbols
 \setbeamertemplate{navigation symbols}{}
@@ -70,8 +71,10 @@
 }
 \footlinecolor{} % Default: no footline
 
-\pgfdeclareimage[width=0.09\paperwidth]{logo}{assets/logo_RGB}
-\pgfdeclareimage[width=0.09\paperwidth]{whitelogo}{assets/logo_RGB_negative}
+%\pgfdeclareimage[width=0.09\paperwidth]{logo}{assets/logo_RGB}
+\pgfdeclareimage[width=0.09\paperwidth]{logo}{template/Politecnico-di-Torino-Presentation/assets/logo_RGB} % updated path - @eliainnocenti
+%\pgfdeclareimage[width=0.09\paperwidth]{whitelogo}{assets/logo_RGB_negative}
+\pgfdeclareimage[width=0.09\paperwidth]{whitelogo}{template/Politecnico-di-Torino-Presentation/assets/logo_RGB_negative} % updated path - @eliainnocenti
 \newcommand{\@logo}{logo}
 
 % Set colours
