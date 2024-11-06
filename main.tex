@@ -1,4 +1,5 @@
 % main.tex
+
 \documentclass{beamer}
 
 \usepackage{template/Politecnico-di-Torino-Presentation/beamerthemesintef} % updated path - @eliainnocenti
@@ -16,38 +17,29 @@
 \newcommand{\hrefcol}[2]{\textcolor{cyan}{\href{#1}{#2}}}
 
 % Presentation info
-\title{Your Presentation Title}
-\subtitle{Using \LaTeX\ to prepare slides}
-\course{Master's Degree in Computer Science}
-\author{Your Name}
-\IDnumber{1234567}
-%\institute{Politecnico di Torino}
-%\date{\today}
+\title{Your Title Here} % TODO: update
+\subtitle{Beamer for the CAOS project}
+%\course{Computer Architectures and Operating Systems}
+\author{
+    \newline Andrea Botticella
+    \newline Fabrizio Emanuel 
+    \newline Elia Innocenti
+    \newline Renato Mignone 
+    \newline Simone Romano     
+}
+% TODO: check date
 
 % Begin document
 \begin{document}
 \maketitle
 
-% Title frame
-%\begin{frame}
-%    \titlepage
-%\end{frame}
+% Include the sections of the presentation
+\include{sections/01-introduction}
+%\include{sections/02-background}
+%\include{sections/03-methodology}
+%\include{sections/04-results}
+%\include{sections/05-conclusion}
 
-% Example slide
-\begin{frame}{Introduction}
-    \begin{itemize}
-        \item First point
-        \item Second point
-        \item Third point
-    \end{itemize}
-\end{frame}
-
-% Additional slides as needed
-\begin{frame}{Another Slide}
-    %\includegraphics[width=0.5\textwidth]{\templatepath/assets/logo_RGB.png}
-    %\hfill
-    %\includegraphics[width=0.5\textwidth]{\templatepath/assets/logo_RGB_master.png}
-\end{frame}
+\backmatter
 
 \end{document}
-

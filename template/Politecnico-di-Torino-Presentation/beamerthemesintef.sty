@@ -157,11 +157,18 @@
   \hspace{-12mm}
   \vspace{20mm}
   \begin{beamercolorbox}[wd=0.72\textwidth,sep=10pt,leftskip=8mm]{title}%
+  
+    \vspace{0.5cm} % added - @eliainnocenti
+  
     {\usebeamerfont{title}\inserttitle}
+    
+    \vspace{0.1cm} % added - @eliainnocenti
   
     {\usebeamerfont{subtitle}\insertsubtitle}
 
     {\usebeamerfont{subtitle}\@courseLabel}
+    
+    \vspace{-0.3cm} % added - @eliainnocenti
     
     {\usebeamerfont{author}\usebeamercolor[fg]{author}\textbf{\insertauthor} \ifdefempty{\@IDnumber}{}{(\@IDnumber)}}
   
@@ -282,7 +289,7 @@
         \Huge \inserttitle
         \vspace{5mm}
       }
-      \Large \textsl{Thank you for listening! \\ Any questions?}
+      \Large \textsl{\\ Thank you for listening! \\ Any questions?}
     \end{minipage}
   \end{frame}
 \endgroup
