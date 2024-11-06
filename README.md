@@ -1,6 +1,6 @@
 # Project Report
 
-This repository contains the \LaTeX source files for the project report associated with
+This repository contains the LaTeX source files for the project report associated with
 [Project Repository](https://github.com/neo-CAOS/), which holds the main code and related materials.
 The report repository will be included as a submodule in the main project repository to facilitate
 a seamless integration of documentation alongside the project.
@@ -9,7 +9,7 @@ a seamless integration of documentation alongside the project.
 
 The repository is organized as follows:
 
-- `sections/`: contains separate \LaTeX files for each section of the report.
+- `sections/`: contains separate LaTeX files for each section of the report.
 - `images/`: stores all images and diagrams included in the report.
 - `main.tex`: the main LaTeX file that compiles the entire report.
 - `compile.sh`: a script to compile the report.
@@ -44,7 +44,7 @@ Run the following command to compile the report:
 ./compile.sh
 ```
 
-This command will generate the final PDF document from the \LaTeX source files and store it in the `out` directory. Ensure all dependencies, including \LaTeX and bibliography tools, are installed on your system before running the command.
+This command will generate the final PDF document from the LaTeX source files and store it in the `out` directory. Ensure all dependencies, including LaTeX and bibliography tools, are installed on your system before running the command.
 
 ### Clean the Output Directory
 
