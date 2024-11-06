@@ -1,0 +1,7 @@
+# System files
+.DS_Store
+
+# Output dirs
+out/
+template/Politecnico di Torino Presentation/out/
+
