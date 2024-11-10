@@ -3,5 +3,7 @@
 
 # Output dirs
 out/
-template/Politecnico di Torino Presentation/out/
+build/
+template/Politecnico-di-Torino-Presentation/out/
+template/Politecnico-di-Torino-Presentation/build/
 
