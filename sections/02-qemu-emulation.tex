@@ -1,3 +1,5 @@
+% 02-qemu-emulation.tex
+
 \section{Part 1 - QEMU Board Emulation}
 
 \begin{frame}{Custom QEMU Version}
@@ -21,6 +23,95 @@
             \item Implement functions to load firmware, initialize memory regions, and handle hardware components.
             \item Set up and configure hardware components like NVIC, LPUART, and PIT timers.
             \item Manage system clocks and interrupts.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Memory Regions Initialization}
+    \begin{itemize}
+        \item Flash Memory:
+        \begin{itemize}
+            \item Block0: Base Address: 0x00400000, Size: 2 MB
+            \item Block1: Base Address: 0x00600000, Size: 2 MB
+            \item Block2: Base Address: 0x00800000, Size: 2 MB
+            \item Block3: Base Address: 0x00AD0000, Size: 2 MB
+            \item Block4: Base Address: 0x10000000, Size: 128 KB
+            \item Utest: Base Address: 0x18000000, Size: 8 KB
+        \end{itemize}
+        \item SRAM Memory:
+        \begin{itemize}
+            \item Block0: Base Address: 0x20400000, Size: 256 KB
+            \item Block1: Base Address: 0x20440000, Size: 256 KB
+            \item Block2: Base Address: 0x20480000, Size: 256 KB
+        \end{itemize}
+        \item DRAM Memory:
+        \begin{itemize}
+            \item Base Address: 0x30000000, Size: 1 MB
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Hardware Components Setup}
+    \begin{itemize}
+        \item NVIC (Nested Vectored Interrupt Controller):
+        \begin{itemize}
+            \item Configured with 32 IRQs and 4 priority bits.
+            \item Connected to system clock and reference clock.
+        \end{itemize}
+        \item LPUART (Low Power UART):
+        \begin{itemize}
+            \item Base Address: 0x4006A000
+            \item Connected to NVIC and system clock.
+        \end{itemize}
+        \item PIT Timers (Periodic Interrupt Timer):
+        \begin{itemize}
+            \item Timer1: Base Address: 0x40037000
+            \item Timer2: Base Address: 0x40038000
+            \item Connected to NVIC and system clock.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{System Clocks and Interrupts}
+    \begin{itemize}
+        \item System Clock:
+        \begin{itemize}
+            \item Created clock object with 7.14ns period (140MHz frequency).
+        \end{itemize}
+        \item Interrupt Handling:
+        \begin{itemize}
+            \item Configured NVIC to handle interrupts.
+            \item Linked NVIC's memory access to system memory.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Firmware Loading}
+    \begin{itemize}
+        \item Function: \texttt{s32k3x8\_load\_firmware}
+        \item Parameters:
+        \begin{itemize}
+            \item \texttt{cpu}: The ARM CPU instance.
+            \item \texttt{ms}: The machine state.
+            \item \texttt{flash}: The memory region representing the flash memory.
+            \item \texttt{firmware\_filename}: The filename of the firmware to be loaded.
+        \end{itemize}
+        \item Functionality:
+        \begin{itemize}
+            \item Reads the firmware file and loads its contents into the specified flash memory region.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Initialization Functions}
+    \begin{itemize}
+        \item \texttt{s32k3x8\_initialize\_memory\_regions}:
+        \begin{itemize}
+            \item Initializes flash, SRAM, and DRAM memory regions.
+        \end{itemize}
+        \item \texttt{s32k3x8\_init}:
+        \begin{itemize}
+            \item Initializes the system, including memory regions, NVIC, LPUART, and PIT timers.
         \end{itemize}
     \end{itemize}
 \end{frame}
