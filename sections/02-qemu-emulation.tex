@@ -1,0 +1,26 @@
+\section{Part 1 - QEMU Board Emulation}
+
+\begin{frame}{Custom QEMU Version}
+    \begin{itemize}
+        \item Emulate the NXP S32K3X8EVB board, which is not natively supported by QEMU.
+        \item Ensure proper emulation of the CPU, memory map, and peripherals.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Resources Used}
+    \begin{itemize}
+        \item Adding a new architecture to QEMU.
+        \item Previous projects and repositories for reference.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Implementation Details}
+    \begin{itemize}
+        \item Board Initialization and Configuration:
+        \begin{itemize}
+            \item Implement functions to load firmware, initialize memory regions, and handle hardware components.
+            \item Set up and configure hardware components like NVIC, LPUART, and PIT timers.
+            \item Manage system clocks and interrupts.
+        \end{itemize}
+    \end{itemize}
+\end{frame}

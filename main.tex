@@ -3,17 +3,13 @@
 \documentclass{beamer}
 
 \usepackage{template/Politecnico-di-Torino-Presentation/beamerthemesintef} % updated path - @eliainnocenti
-
 \usepackage{amsfonts,amsmath,oldgerm}
 
 \usetheme{sintef}
 
 \newcommand{\testcolor}[1]{\colorbox{#1}{\textcolor{#1}{test}}~\texttt{#1}}
-
 \usefonttheme[onlymath]{serif}
-
 \titlebackground*{template/Politecnico-di-Torino-Presentation/assets/background} % updated path - @eliainnocenti
-
 \newcommand{\hrefcol}[2]{\textcolor{cyan}{\href{#1}{#2}}}
 
 % Presentation info
@@ -34,11 +30,11 @@
 \maketitle
 
 % Include the sections of the presentation
-\include{sections/01-introduction}
-%\include{sections/02-background}
-%\include{sections/03-methodology}
-%\include{sections/04-results}
-%\include{sections/05-conclusion}
+\input{01-overview}
+\input{02-qemu-emulation}
+\input{03-freertos-porting}
+\input{04-application}
+\input{05-conclusion}
 
 \title{}
 \backmatter
