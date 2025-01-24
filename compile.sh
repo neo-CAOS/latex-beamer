@@ -6,7 +6,7 @@ PDF_FILE='main.pdf'
 SECTIONS_DIR="sections"
 
 # Set custom PDF name
-CUSTOM_PDF_NAME="NXP-S32K3X8EVB-Botticella-Emanuel-Innocenti-Mignone-Romano.pdf"
+CUSTOM_PDF_NAME="NXP-S32K3X8EVB-beamer.pdf"
 
 # Define color codes
 RED='\033[0;31m'
