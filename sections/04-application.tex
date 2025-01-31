@@ -4,24 +4,65 @@
 
 \begin{frame}{Secure Timeout System Application}
     \begin{itemize}
-        \item Implement a simple application with multiple tasks to demonstrate the setup.
-        \item Tasks include monitoring user activity, handling alerts, and simulating events.
-        \item Use hardware timers for periodic operations.
+        \item The application is a simple implementation of a Secure Timeout System.
+        \item It consists of multiple tasks that simulate events, monitor activities, and handle alerts.
+        \item Hardware timers are used to generate periodic interrupts for activity detection.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Task Implementation}
+    \begin{itemize}
+        \item \textbf{Event Task:}
+        \begin{itemize}
+            \item Periodically generates events that can be either user activities or suspicious activities.
+            \item Uses a pseudo-random number generator to decide the type of event.
+            \item Logs the generated event and updates the respective counters.
+        \end{itemize}
+        \item \textbf{Monitor Task:}
+        \begin{itemize}
+            \item Checks for user activity detection.
+            \item Logs the status of user activity.
+            \item Resets the user activity detection flag after logging.
+        \end{itemize}
+        \item \textbf{Alert Task:}
+        \begin{itemize}
+            \item Checks for suspicious activity detection.
+            \item Logs the status of the system security.
+            \item Initiates security protocols if suspicious activity is detected.
+            \item Resets the suspicious activity detection flag after logging.
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Hardware Timer Initialization}
+    \begin{itemize}
+        \item \textbf{Timer 0:}
+        \begin{itemize}
+            \item Configured to generate periodic interrupts.
+            \item Interrupt handler checks for user activities and sets the user activity detection flag.
+        \end{itemize}
+        \item \textbf{Timer 1:}
+        \begin{itemize}
+            \item Configured to generate periodic interrupts.
+            \item Interrupt handler checks for suspicious activities and sets the suspicious activity detection flag.
+        \end{itemize}
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Implementation Details}
     \begin{itemize}
-        \item Task Implementation:
+        \item \textbf{Global Variables:}
         \begin{itemize}
-            \item Monitor Task: Detects user activity and logs it.
-            \item Alert Task: Detects suspicious activity and logs it.
-            \item Event Task: Simulates user and suspicious activities periodically.
+            \item \texttt{userActivity}, \texttt{userActivityDetection}, \texttt{suspiciousActivity}, \texttt{suspiciousActivityDetection}
         \end{itemize}
-        \item Hardware Timer Initialization:
+        \item \textbf{Pseudo-random Number Generator:}
         \begin{itemize}
-            \item Initialize hardware timers to generate periodic interrupts.
-            \item Implement interrupt handlers to detect activities.
+            \item Used to simulate random events in the Event Task.
+        \end{itemize}
+        \item \textbf{Task Priorities:}
+        \begin{itemize}
+            \item Event Task has the highest priority to ensure timely event generation.
+            \item Monitor Task and Alert Task have lower priorities.
         \end{itemize}
     \end{itemize}
 \end{frame}
