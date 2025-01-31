@@ -12,6 +12,26 @@
 \titlebackground*{template/Politecnico-di-Torino-Presentation/assets/background} % updated path
 \newcommand{\hrefcol}[2]{\textcolor{cyan}{\href{#1}{#2}}}
 
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\lstset{
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    % numbers=left,
+    % numberstyle=\tiny\color{gray},
+    % stepnumber=1,
+    % numbersep=5pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=single,
+    tabsize=4,
+    language=C
+}
+
 % Presentation info
 \title{Secure Timeout System \newline NXP S32K3X8EVB}
 \subtitle{Beamer for the CAOS Project}

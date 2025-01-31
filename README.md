@@ -1,4 +1,4 @@
-# Project Report
+# Project Beamer
 
 ![polito](resources/logo_polito.jpg)
 
