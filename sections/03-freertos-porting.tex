@@ -2,86 +2,65 @@
 
 \section{Part 2 - FreeRTOS Porting}
 
+\begin{frame}{Overview}
+    \begin{itemize}
+        \item To test the \textbf{FreeRTOS Porting} on \textbf{QEMU}, a very simple application was created.
+        \item The application runs a basic task that prints a message every second.
+        \item If everything works correctly, it means that the \textbf{FreeRTOS Porting} has been successfully implemented.
+    \end{itemize}
+\end{frame}
+
 \begin{frame}{Setting Up FreeRTOS}
+    \begin{enumerate}
+        \item \textbf{Cloning} the FreeRTOS repository.
+        \item Creating the directory \textbf{structure}: \texttt{App/} and \texttt{App/Peripherals/}.
+        \item Creating and implementing the following files in the \texttt{App/} directory:
+            \begin{itemize}
+                \item \texttt{s32\_startup.c}, \texttt{s32\_linker.ld}
+                \item \texttt{FreeRTOSConfig.h}
+                \item \texttt{Makefile}
+                \item \texttt{main.c}
+                \item \texttt{Peripherals/}: \texttt{uart.c}, \texttt{printf-stdarg.c} with their respective header files
+            \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Setting Up FreeRTOS}
+    
+    % TODO: is this frame needed ?
+
+\end{frame}
+
+\begin{frame}[fragile]{Running FreeRTOS on QEMU}
     \begin{itemize}
-        \item Clone the FreeRTOS repository:
-        \begin{itemize}
-            \item \texttt{cd project\_name}
-            \item \texttt{git clone https://github.com/FreeRTOS/FreeRTOS.git}
-        \end{itemize}
-        \item Create the directory structure:
-        \begin{itemize}
-            \item \texttt{mkdir App}
-            \item \texttt{mkdir App/Peripherals}
-        \end{itemize}
-        \item Create the following files in the \texttt{App} directory:
-        \begin{itemize}
-            \item \texttt{main.c}
-            \item \texttt{s32\_linker.ld}
-            \item \texttt{s32\_startup.c}
-            \item \texttt{FreeRTOSConfig.h}
-            \item \texttt{Makefile}
-            \item \texttt{Peripherals/uart.c}
-            \item \texttt{Peripherals/uart.h}
-            \item \texttt{Peripherals/printf-stdarg.c}
-            \item \texttt{Peripherals/printf-stdarg.h}
-        \end{itemize}
-        \item The final structure should look like this:
-        \begin{verbatim}
-        project_name/
-        ├── qemu/
-        ├── FreeRTOS/
-        └── App/
-            ├── main.c
-            ├── s32_linker.ld
-            ├── s32_startup.c
-            ├── FreeRTOSConfig.h
-            ├── Makefile
-            └── Peripherals/
-                ├── uart.c
-                ├── uart.h
-                ├── printf-stdarg.c
-                └── printf-stdarg.h
-        \end{verbatim}
+        \item \texttt{main.c}:
+            \begin{lstlisting}[language=C]
+xTaskCreate(vTask1, "Task1", configMINIMAL_STACK_SIZE, NULL, mainTASK_PRIORITY, NULL);
+
+void vTask1(void *pvParameters) 
+{
+    (void) pvParameters;
+
+    for (;;) 
+    {
+        printf("Task1 is running...\n");
+        vTaskDelay(1000);
+    }
+}
+            \end{lstlisting}
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Running FreeRTOS on QEMU}
+\begin{frame}[fragile]{Running FreeRTOS on QEMU}
     \begin{itemize}
-        \item Implement the \texttt{main.c} file:
-        \begin{itemize}
-            \item \texttt{\#include "FreeRTOS.h"}
-            \item \texttt{\#include "task.h"}
-            \item \texttt{\#include "uart.h"}
-            \item \texttt{\#include "printf-stdarg.h"}
-            \item \texttt{void vTask1(void *pvParameters);}
-            \item \texttt{int main(int argc, char **argv) \{ ... \}}
-            \item \texttt{void vTask1(void *pvParameters) \{ ... \}}
-        \end{itemize}
-        \item Compile and run the application:
-        \begin{itemize}
-            \item \texttt{cd App}
-            \item \texttt{make run}
-        \end{itemize}
+        \item Run the \textbf{Test}:
+            \begin{itemize}
+                \item \texttt{cd App \&\& make run}
+            \end{itemize}
     \end{itemize}
-\end{frame}
-
-\begin{frame}{Implementation Details}
-    \begin{itemize}
-        \item Kernel Configuration:
-        \begin{itemize}
-            \item Configure FreeRTOS kernel settings in \texttt{FreeRTOSConfig.h}.
-            \item Define task priorities, stack sizes, and heap sizes.
-            \item Enable necessary FreeRTOS features like mutexes, semaphores, and task notifications.
-        \end{itemize}
-        \item Makefile Configuration:
-        \begin{itemize}
-            \item Define the FreeRTOS root directory, demo project, and kernel directories.
-            \item Set up the compiler toolchain and target embedded board.
-            \item Include directories and source file search paths.
-            \item Define compiler and linker flags.
-            \item Specify kernel and demo source files.
-            \item Create object files and link the final executable.
-        \end{itemize}
-    \end{itemize}
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.75\textwidth]{images/freertos_porting.png}
+        \caption{FreeRTOS Porting Test.}
+    \end{figure}
 \end{frame}
