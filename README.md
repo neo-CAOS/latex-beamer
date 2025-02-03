@@ -60,6 +60,21 @@ This command deletes all files in the output directory if it exists, ensuring a 
 
 For any issues, please refer to the main project repository or contact the authors.
 
+## License
+
+This project is licensed under the [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/) license.
+
+#### What This Means:
+
+- **Attribution**: You are free to share (copy, redistribute) and adapt (remix, transform, build upon) the material as long as proper credit is given to the original author(s). 
+- **Non-Commercial**: You may not use the material for commercial purposes.
+
+For more details and templates, refer to:
+- [`LICENSE-CC-BY-NC-4.0.md`](resources/LICENSE-CC-BY-NC-4.0.md)
+- [GitHub License Templates](https://github.com/Gibberlings3/GitHub-Templates/tree/master/License-Templates)
+
+By using this project, you agree to the terms of the [CC BY-NC 4.0 license](https://creativecommons.org/licenses/by-nc/4.0/).
+
 ---
 
 This repository is structured for ease of integration and version control, with the report versioned separately from the main codebase. Happy compiling!
