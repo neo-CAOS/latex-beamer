@@ -4,6 +4,37 @@
 
 \begin{frame}{Overview}
     \begin{itemize}
-        \item text
+        \item The MPU enhances security by restricting memory access based on region configurations.
+        \item The ARM Cortex-M7 processor supports up to 16 MPU regions.
+        \item FreeRTOS provides built-in MPU support for ARM Cortex-M4, which can be theoretically adapted for Cortex-M7.
+        \begin{itemize}
+            \item \textbf{Errata 837070}: Requires workarounds for Cortex-M7 r0p0 and r0p1 revisions. 
+        \end{itemize}
     \end{itemize}
 \end{frame}
+
+\begin{frame}{Theoretical Steps for Implementation}
+    \begin{itemize}
+        \item \textbf{Define MPU Region Count in \texttt{FreeRTOSConfig.h}}:
+            \begin{itemize}
+                \item Set \texttt{configENABLE\_MPU} to 1.
+                \item Set \texttt{configTOTAL\_MPU\_REGIONS} to 16.
+                \item Set \texttt{configENABLE\_ERRATA\_837070\_WORKAROUD} to 1.
+            \end{itemize}
+        \item \textbf{Enable Errata Workaround}: Apply fix for Cortex-M7 r0p0 and r0p1 by modifying \texttt{port.c}.
+        \item \textbf{Integrate FreeRTOS Changes}: Adapt \texttt{ARM\_CM4\_MPU/port.c} to support Cortex-M7.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{MPU Configuration}
+    \begin{itemize}
+        \item Each MPU region is configured with:
+        \begin{itemize}
+            \item Base address
+            \item Region size
+            \item Access permissions (privileged/unprivileged, read/write/execute)
+        \end{itemize}
+        \item Enables separation of kernel and user-mode tasks.
+    \end{itemize}
+\end{frame}
+

@@ -5,83 +5,90 @@
 \begin{frame}{Custom QEMU Version}
     \begin{itemize}
         \item Emulate the NXP S32K3X8EVB board, which is not natively supported by QEMU.
-        \item Ensure proper emulation of the CPU, memory map, and peripherals.
+        \item Ensure proper emulation of the CPU (ARM Cortex-M7), memory map, and peripherals.
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Resources Used}
+\begin{frame}{Technical Details}
     \begin{itemize}
-        \item Adding a new architecture to QEMU.
-        \item Previous projects and repositories for reference.
-    \end{itemize}
-\end{frame}
-
-\begin{frame}{Implementation Details}
-    \begin{itemize}
-        \item Board Initialization and Configuration:
-        \begin{itemize}
-            \item Implement functions to load firmware, initialize memory regions, and handle hardware components.
-            \item Set up and configure hardware components like NVIC, LPUART, and PIT timers.
-            \item Manage system clocks and interrupts.
-        \end{itemize}
+        \item Added a new machine model to QEMU for the S32K3X8EVB board.
+        \item Used previous QEMU implementations as reference (ARMv7-M architecture).
+        \item Implemented custom initialization routines for memory and peripherals.
+        \item S32K358EVB board has the following specification:
+            \begin{itemize}
+                \item ARM Cortex-M7 CPU.
+                \item \(\sim \)8MB Flash memory, 768KB SRAM, 256KB DTCM, and 128KB ITCM.
+                \item NVIC with 256 IRQs and 4 priority bits.
+                \item Multiple peripherals: 16 LPUART, 3 PIT timers, 16 MPU regions.
+                \item System clock running at 240MHz.
+            \end{itemize}
     \end{itemize}
 \end{frame}
 
 \begin{frame}{Memory Regions Initialization}
     \begin{itemize}
-        \item Flash Memory:
+        \item \textbf{Flash Memory}: Configured multiple blocks:
         \begin{itemize}
             \item Block0: Base Address: 0x00400000, Size: 2 MB
             \item Block1: Base Address: 0x00600000, Size: 2 MB
             \item Block2: Base Address: 0x00800000, Size: 2 MB
-            \item Block3: Base Address: 0x00AD0000, Size: 2 MB
+            \item Block3: Base Address: 0x00A00000, Size: 2 MB
             \item Block4: Base Address: 0x10000000, Size: 128 KB
             \item Utest: Base Address: 0x18000000, Size: 8 KB
         \end{itemize}
-        \item SRAM Memory:
+        \item \textbf{SRAM Memory}:
         \begin{itemize}
             \item Block0: Base Address: 0x20400000, Size: 256 KB
             \item Block1: Base Address: 0x20440000, Size: 256 KB
             \item Block2: Base Address: 0x20480000, Size: 256 KB
         \end{itemize}
-        \item DRAM Memory:
+        \item \textbf{DTCM and ITCM Memory}:
         \begin{itemize}
-            \item Base Address: 0x30000000, Size: 1 MB
+            \item DTCM0: Base Address: 0x20000000, Size: 128 KB
+            \item ITCM0: Base Address: 0x00000000, Size: 64 KB
         \end{itemize}
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Hardware Components Setup}
+\begin{frame}{Peripherals and Interrupts Setup}
     \begin{itemize}
-        \item NVIC (Nested Vectored Interrupt Controller):
+        \item \textbf{NVIC (Nested Vectored Interrupt Controller)}:
         \begin{itemize}
-            \item Configured with 32 IRQs and 4 priority bits.
-            \item Connected to system clock and reference clock.
+            \item Configured with 256 IRQs and 4 priority bits.
+            \item Interrupt vectors mapped in system memory.
         \end{itemize}
-        \item LPUART (Low Power UART):
+        \item \textbf{LPUART (Low Power UART)}:
         \begin{itemize}
             \item Base Address: 0x4006A000
-            \item Connected to NVIC and system clock.
+            \item The board has \textbf{16 LPUART instances}.\\ They are mapped starting from the UART base address. 
+            \item Connected to NVIC and clocked by \texttt{AIPS\_PLAT\_CLK} and \texttt{AIPS\_SLOW\_CLK}.
         \end{itemize}
-        \item PIT Timers (Periodic Interrupt Timer):
+        \item \textbf{PIT Timers (Periodic Interrupt Timer)}:
         \begin{itemize}
             \item Timer1: Base Address: 0x40037000
             \item Timer2: Base Address: 0x40038000
-            \item Connected to NVIC and system clock.
+            \item Timer3: Base Address: 0x40039000
         \end{itemize}
+        \item \textbf{MPU}: 16 regions.
     \end{itemize}
 \end{frame}
 
 \begin{frame}{System Clocks and Interrupts}
     \begin{itemize}
-        \item System Clock:
+        \item \textbf{System Clock}:
         \begin{itemize}
-            \item Created clock object with 7.14ns period (140MHz frequency).
+            \item Primary System Clock: 240MHz frequency, 4.16ns period.
+            \item AIPS Platform Clock: 80MHz
+            \item AIPS Slow Clock: 40MHz
+            %\item Reference Clock: 1MHz
         \end{itemize}
-        \item Interrupt Handling:
+        \item \textbf{Interrupt Handling}:
         \begin{itemize}
-            \item Configured NVIC to handle interrupts.
-            \item Linked NVIC's memory access to system memory.
+            \item Configured NVIC to handle exceptions and IRQs.
+            \item Supports up to 256 IRQs with 4 priority levels.
+            \item NVIC is connected to system and reference clocks.
+            %\item Bit-band support enabled for efficient memory access.
+            \item Interrupt sources include timers, UARTs, and peripheral events.
         \end{itemize}
     \end{itemize}
 \end{frame}
@@ -103,15 +110,26 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Initialization Functions}
+\begin{frame}[fragile]{Class initialization}
     \begin{itemize}
-        \item \texttt{s32k3x8\_initialize\_memory\_regions}:
-        \begin{itemize}
-            \item Initializes flash, SRAM, and DRAM memory regions.
-        \end{itemize}
-        \item \texttt{s32k3x8\_init}:
-        \begin{itemize}
-            \item Initializes the system, including memory regions, NVIC, LPUART, and PIT timers.
-        \end{itemize}
+    \item \texttt{s32k3x8\_class\_init}:
+        \begin{lstlisting}[language=C]
+static void s32k3x8_class_init(ObjectClass *oc, void *data) {
+    MachineClass *mc = MACHINE_CLASS(oc);
+    mc->name = g_strdup("s32k3x8evb");
+    mc->desc = "NXP S32K3X8 EVB (Cortex-M7)";
+    mc->init = s32k3x8_init;
+    mc->default_cpu_type = ARM_CPU_TYPE_NAME("cortex-m7");
+    mc->default_cpus = 1;
+    mc->min_cpus = mc->default_cpus;
+    mc->max_cpus = mc->default_cpus;
+    mc->no_floppy = 1;
+    mc->no_cdrom = 1;
+    mc->no_parallel = 1;
+}
+        \end{lstlisting}
     \end{itemize}
+
 \end{frame}
+
+
