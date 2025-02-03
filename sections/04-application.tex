@@ -3,11 +3,17 @@
 \section{Test Application}
 
 \begin{frame}{Secure Timeout System Application}
-    \begin{itemize}
-        \item The application is a simple implementation of a \textit{Secure Timeout System}.
-        \item It consists of \textbf{multiple tasks} that simulate events, monitor activities, and handle alerts.
-        \item \textbf{Hardware timers} are used to generate \textbf{periodic interrupts} for activity detection.
-    \end{itemize}
+    \begin{columns}
+        \column{0.6\textwidth}
+        \begin{itemize}
+            \item The application is a simple implementation of a \textit{Secure Timeout System}.
+            \item It consists of \textbf{multiple tasks} that simulate events, monitor activities, and handle alerts.
+            \item \textbf{Hardware timers} are used to generate \textbf{periodic interrupts} for activity detection.
+        \end{itemize}
+        \column{0.4\textwidth}
+        \centering
+        \includegraphics[width=0.7\linewidth]{../images/app.png}
+    \end{columns}
 \end{frame}
 
 \begin{frame}{Task Implementation}
