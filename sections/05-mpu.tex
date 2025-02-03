@@ -27,14 +27,23 @@
 \end{frame}
 
 \begin{frame}{MPU Configuration}
-    \begin{itemize}
-        \item Each MPU region is configured with:
+    \begin{columns}
+        % Colonna di testo (70% della larghezza)
+        \column{0.6\textwidth}
         \begin{itemize}
-            \item Base address
-            \item Region size
-            \item Access permissions (privileged/unprivileged, read/write/execute)
+            \item Each MPU region is configured with:
+            \begin{itemize}
+                \item Base address
+                \item Region size
+                \item Access permissions (privileged/unprivileged, read/write/execute)
+            \end{itemize}
+            \item Enables separation of kernel and user-mode tasks.
         \end{itemize}
-        \item Enables separation of kernel and user-mode tasks.
-    \end{itemize}
+
+        % Colonna immagine (30% della larghezza)
+        \column{0.4\textwidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{../images/mpu_meme.png}
+    \end{columns}
 \end{frame}
 
