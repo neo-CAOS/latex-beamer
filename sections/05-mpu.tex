@@ -38,6 +38,7 @@
                 \item Set \texttt{configENABLE\_MPU} to 1.
                 \item Set \texttt{configTOTAL\_MPU\_REGIONS} to 16.
                 \item Set \texttt{configENABLE\_ERRATA\_837070\_WORKAROUD} to 1.
+                \item \texttt{configMINIMAL\_STACK\_SIZE} needs to be adjusted since the MPU requires memory alignment.
             \end{itemize}
         \item \textbf{Enable Errata Workaround}: Apply fix for Cortex-M7 r0p0 and r0p1 by modifying \texttt{port.c}.
         \item \textbf{Integrate FreeRTOS Changes}: Adapt \texttt{ARM\_CM4\_MPU/port.c} to support Cortex-M7.
