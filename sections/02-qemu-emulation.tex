@@ -17,10 +17,10 @@
 
 \begin{frame}{Technical Details}
     \begin{itemize}
-        \item Added a new machine model to \textbf{QEMU} for the \textbf{S32K3X8EVB} board.
-        \item Used previous QEMU implementations as reference (\textbf{ARMv7-M} architecture).
-        \item Implemented custom initialization routines for memory and peripherals.
-        \item \textbf{S32K358EVB} board has the following specification:
+        \item Added a new machine model to \textbf{QEMU} for the \textbf{S32K3X8EVB} board, creating a dedicated \texttt{.c} file.
+        \item Specifically took the \textbf{S32K358EVB} board as a reference for implementation.
+        \item Implemented custom initialization routines for memory and peripherals based on its architecture.
+        \item The \textbf{S32K358EVB} board specifications we implemented:
             \begin{itemize}
                 \item ARM Cortex-M7 CPU.
                 \item \(\sim \)8MB Flash memory, 768KB SRAM, 256KB DTCM, and 128KB ITCM.
@@ -80,12 +80,12 @@
             \item Timer2: Base Address: 0x40038000
             \item Timer3: Base Address: 0x40039000
         \end{itemize}
-        \item \textbf{MPU}: 16 regions.
     \end{itemize}
 \end{frame}
 
 \begin{frame}{System Clocks and Interrupts}
     \begin{itemize}
+        \item \textbf{MPU}: 16 regions.
         \item \textbf{System Clock}:
         \begin{itemize}
             \item Primary System Clock: 240MHz frequency, 4.16ns period.

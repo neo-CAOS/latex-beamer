@@ -2,8 +2,7 @@
 
 ![polito](resources/logo_polito.jpg)
 
-This repository contains the LaTeX source files for the project report associated with
-[Project Repository](https://github.com/neo-CAOS/), which holds the main code and related materials.
+This repository contains the LaTeX source files for the project report associated with [Project Repository](https://github.com/neo-CAOS/Secure-Timeout-System-NXPS32K3X8EVB), which holds the main code and related materials.
 The report repository will be included as a submodule in the main project repository to facilitate
 a seamless integration of documentation alongside the project.
 
