@@ -13,19 +13,6 @@
     \end{itemize}
 \end{frame}
 
-\begin{frame}{Theoretical Steps for Implementation}
-    \begin{itemize}
-        \item \textbf{Define MPU Region Count in \texttt{FreeRTOSConfig.h}}:
-            \begin{itemize}
-                \item Set \texttt{configENABLE\_MPU} to 1.
-                \item Set \texttt{configTOTAL\_MPU\_REGIONS} to 16.
-                \item Set \texttt{configENABLE\_ERRATA\_837070\_WORKAROUD} to 1.
-            \end{itemize}
-        \item \textbf{Enable Errata Workaround}: Apply fix for Cortex-M7 r0p0 and r0p1 by modifying \texttt{port.c}.
-        \item \textbf{Integrate FreeRTOS Changes}: Adapt \texttt{ARM\_CM4\_MPU/port.c} to support Cortex-M7.
-    \end{itemize}
-\end{frame}
-
 \begin{frame}{MPU Configuration}
     \begin{columns}
         \column{0.6\textwidth}
@@ -42,6 +29,19 @@
         \centering
         \includegraphics[width=0.7\linewidth]{../images/mpu_meme.png}
     \end{columns}
+\end{frame}
+
+\begin{frame}{Theoretical Steps for Implementation}
+    \begin{itemize}
+        \item \textbf{Define MPU Region Count in \texttt{FreeRTOSConfig.h}}:
+            \begin{itemize}
+                \item Set \texttt{configENABLE\_MPU} to 1.
+                \item Set \texttt{configTOTAL\_MPU\_REGIONS} to 16.
+                \item Set \texttt{configENABLE\_ERRATA\_837070\_WORKAROUD} to 1.
+            \end{itemize}
+        \item \textbf{Enable Errata Workaround}: Apply fix for Cortex-M7 r0p0 and r0p1 by modifying \texttt{port.c}.
+        \item \textbf{Integrate FreeRTOS Changes}: Adapt \texttt{ARM\_CM4\_MPU/port.c} to support Cortex-M7.
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{MPU in QEMU}
