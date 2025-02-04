@@ -60,8 +60,13 @@
     \begin{itemize}
         \item \textbf{NVIC (Nested Vectored Interrupt Controller)}:
         \begin{itemize}
-            \item Configured with 256 IRQs and 4 priority bits.
-            \item Interrupt vectors mapped in system memory.
+            \item Configured with 4 priority bits and 256 IRQs:
+                \begin{itemize}
+                    \item Initial Stack Pointer value \texttt{(-16)}
+                    \item \textbf{16} System Exceptions
+                    \item \textbf{240} External Interrupts
+                \end{itemize}
+            % \item Interrupt vectors mapped in system memory.
         \end{itemize}
         \item \textbf{LPUART (Low Power UART)}:
         \begin{itemize}

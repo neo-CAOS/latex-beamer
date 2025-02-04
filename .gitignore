@@ -7,3 +7,6 @@ build/
 template/Politecnico-di-Torino-Presentation/out/
 template/Politecnico-di-Torino-Presentation/build/
 
+# Extra files
+lineup.txt
+
