@@ -62,8 +62,8 @@
         \begin{itemize}
             \item Configured with 4 priority bits and 256 IRQs:
                 \begin{itemize}
-                    \item Initial Stack Pointer value \texttt{(-16)}
-                    \item \textbf{16} System Exceptions
+                    \item \textbf{1} Initial Stack Pointer value (-16)
+                    \item \textbf{15} System Exceptions
                     \item \textbf{240} External Interrupts
                 \end{itemize}
             % \item Interrupt vectors mapped in system memory.
@@ -91,12 +91,12 @@
             \item Primary System Clock: 240MHz frequency, 4.16ns period.
             \item AIPS Platform Clock: 80MHz
             \item AIPS Slow Clock: 40MHz
-            %\item Reference Clock: 1MHz
+            \item Reference Clock: 1MHz
         \end{itemize}
         \item \textbf{Interrupt Handling}:
         \begin{itemize}
             \item Configured NVIC to handle exceptions and IRQs.
-            \item Supports up to 256 IRQs with 4 priority levels.
+            % \item Supports up to 256 IRQs with 4 priority levels.
             \item NVIC is connected to system and reference clocks.
             %\item Bit-band support enabled for efficient memory access.
             \item Interrupt sources include timers, UARTs, and peripheral events.

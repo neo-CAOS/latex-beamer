@@ -44,3 +44,44 @@
     \end{columns}
 \end{frame}
 
+\begin{frame}{MPU in QEMU}
+    \begin{itemize}
+        \item \textbf{Device Tree (qtree)}
+        \begin{itemize}
+            \item Used \texttt{qtree} to inspect the device tree of the board.
+            \item Found two MPU regions, each containing 8 blocks.
+        \end{itemize}
+        \item \textbf{Script Execution}
+        \begin{itemize}
+            \item Ran a script to determine how many MPU regions exist in a block.
+        \end{itemize}
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.75\textwidth]{images/mpu_qemu_1.png}
+            \caption{MPU Region Detection Script}
+        \end{figure}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{MPU in QEMU}
+    \begin{itemize}
+        \item \textbf{Result Analysis}
+        \begin{itemize}
+            \item The script returned \texttt{0x00000800}.
+            \item \textbf{Bit 0 (MPU Present Bit)} = 0 
+            \begin{itemize}
+                \item Some Cortex-M chips use this bit to indicate MPU presence.
+                \item For Cortex-M7 (S32K3 series), this bit is always 0. 
+            \end{itemize}
+            \item \textbf{Bits 15:8 (DREGION)} = 8  
+            \begin{itemize}
+                \item MPU supports 8 regions.
+            \end{itemize}
+        \end{itemize}
+        \begin{figure}[h]
+            \centering
+            \includegraphics[width=0.75\textwidth]{images/mpu_qemu_2.png}
+            \caption{MPU Detection Result}
+        \end{figure}
+    \end{itemize}
+\end{frame}
