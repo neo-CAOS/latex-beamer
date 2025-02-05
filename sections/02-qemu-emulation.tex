@@ -106,13 +106,12 @@
 
 \begin{frame}{Firmware Loading}
     \begin{itemize}
-        \item Function: \texttt{s32k3x8\_load\_firmware}
+        \item Function: \texttt{armv7m\_load\_kernel}
         \item Parameters:
         \begin{itemize}
             \item \texttt{cpu}: The ARM CPU instance.
-            \item \texttt{ms}: The machine state.
+            \item \texttt{ms->kernel\_filename}: Firmware file inside the machine state.
             \item \texttt{flash}: The memory region representing the flash memory.
-            \item \texttt{firmware\_filename}: The filename of the firmware to be loaded.
         \end{itemize}
         \item Functionality:
         \begin{itemize}
